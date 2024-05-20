@@ -1,12 +1,14 @@
 package com.example.mvcpractice.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "employees")
 public class Employee {
 
     private long id;
+    @NotNull
     private String firstName;
     private String lastName;
     private String emailId;

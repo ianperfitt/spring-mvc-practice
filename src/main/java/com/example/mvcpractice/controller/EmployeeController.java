@@ -7,14 +7,16 @@ import jakarta.validation.Valid;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping(value = "/", produces="application/json")
 public class EmployeeController {
 //    @Autowired
 //    private EmployeeRepository employeeRepository;
@@ -64,13 +66,26 @@ public class EmployeeController {
 //        return response;
 //    }
 
-    @GetMapping("/{id}/{name}")
-    public String getEmployeeId (@PathVariable long id, @PathVariable String name) {
-        return "Working !";
-    }
+//    @GetMapping("/{id}/{name}")
+//    public String getEmployeeId (@PathVariable long id, @PathVariable String name) {
+//
+//        return "Working !";
+//    }
+//
+//    @GetMapping("/employee/")
+//    public String findEmployeeById(@RequestParam("idd") long id, @RequestParam String name) {
+//
+//        return "Also working !";
+//    }
 
-    @GetMapping("/employee/")
-    public String findEmployeeById(@RequestParam("idd") long id, @RequestParam String name) {
-        return "Also working !";
+//    @GetMapping("/redirectWithRedirectPrefix")
+//    public ModelAndView redirectWithUsingRedirectPrefix(ModelMap model) {
+//        model.addAttribute("attribute", "redirectWithRedirectPrefix");
+//        return new ModelAndView("redirect:/redirectedUrl", model);
+//    }
+
+    @PostMapping("/validateBody")
+    ResponseEntity<String> validateBody(@Valid @RequestBody Employee employee) {
+        return ResponseEntity.ok("valid");
     }
 }
